@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/data.dart';
@@ -24,11 +25,15 @@ class _VideoScreenState extends State<VideoScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp){
       Provider.of<ProviderOperation>(context,listen: false).getAllVideos();
     });
+
     super.initState();
-    _controller = VideoPlayerController.network(
-      widget.video.videoUrl,
+
+    _controller = VideoPlayerController.networkUrl(
+     Uri.parse(widget.video.videoUrl),
 
     );
+    log(widget.video.videoUrl,name: 'videoUrl');
+
     _controller.initialize().then((_){
       setState(() {
         _controller.play();
@@ -56,34 +61,38 @@ class _VideoScreenState extends State<VideoScreen> {
           child: Column(
             children: [
               Stack(
+                alignment: Alignment.center,
                 children: [
-              AspectRatio(
+
+             AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller)),
-                  IconButton(
-                    icon:Icon(Icons.keyboard_arrow_down,color: Colors.white,),
-                    iconSize: 30.0,
-                    onPressed: () {  },),
+                  child: VideoPlayer(_controller),
+                  ),
+
+                  Positioned(
+                    top: 5,
+                   left: 5,
+                   child : IconButton(
+                      icon:Icon(Icons.keyboard_arrow_down,color: Colors.white,),
+                      iconSize: 30.0,
+                      onPressed: () {  },),
+                  ),
                   Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
                       child: VideoProgressIndicator(_controller, allowScrubbing: true)),
 
-                  Positioned(
-                    bottom: 60,
-                    right: 130,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                        onPressed:(){
-                          setState(() {
-                            _controller.value.isPlaying? _controller.pause() : _controller.play();
-                          });
-                        } ,
-                        icon:Icon(
-                          _controller.value.isPlaying?Icons.pause : Icons.play_arrow,color: Colors.white,size: 40,
-                        )),
-                  )
+                  IconButton(
+                    alignment: Alignment.center,
+                      onPressed:(){
+                        setState(() {
+                          _controller.value.isPlaying? _controller.pause() : _controller.play();
+                        });
+                      } ,
+                      icon:Icon(
+                        _controller.value.isPlaying?Icons.pause : Icons.play_arrow,color: Colors.white,size: 40,
+                      ))
                 ],
               ),
 
@@ -114,3 +123,4 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 }
+

@@ -24,6 +24,10 @@ class _VideoCardState extends State<VideoCard> {
           Stack(
             children:[
               Image.network(widget.video.thumbnailUrl.toString(),
+            errorBuilder: ( context,error,stackTrace){
+                return Image.network('https://wallpapercave.com/wp/wp5773223.jpg');
+            },
+
             height: 160,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -50,7 +54,7 @@ class _VideoCardState extends State<VideoCard> {
                 GestureDetector(
                   onTap: (){},
                   child: CircleAvatar(
-                    foregroundImage: NetworkImage(widget.video.authorUrl),
+                    foregroundImage: NetworkImage(''),
                   ),
                 ),
                 SizedBox(width: 8.0,),
@@ -64,7 +68,7 @@ class _VideoCardState extends State<VideoCard> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 14.0),
                       ),
-                      Text("${widget.video.author.toString()} . ${widget.video.views.toString()} views . ${timeago.format(widget.video.uploadTime)}",
+                      Text("${widget.video.author.toString()} . ${widget.video.views.toString()} views . ${widget.video.uploadTime }",
                       style: TextStyle(fontSize: 11.0,color: Colors.white60),),
                     ],
                   ),

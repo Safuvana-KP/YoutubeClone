@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:untitled1/data.dart';
 import 'package:untitled1/provider/provider_service.dart';
@@ -15,9 +17,11 @@ class ProviderOperation extends ChangeNotifier{
     isLoading = true;
     notifyListeners();
     final response = await _service.getAll();
+
     _videos = response;
     isLoading = false;
     notifyListeners();
+
   }
 
 

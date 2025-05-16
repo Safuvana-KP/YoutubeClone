@@ -18,7 +18,7 @@ class VideoInfo extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(fontSize: 17.0,fontWeight: FontWeight.w800),),
         SizedBox(height: 8.0,),
-        Text('${video.views}views . ${timeago.format(video.uploadTime)}',style:
+        Text('${video.views}views . ${video.uploadTime}',style:
           const TextStyle(fontSize: 14.0),),
         const Divider(),
         Row(
@@ -28,7 +28,7 @@ class VideoInfo extends StatelessWidget {
              child: Column(
                children: [
                  Icon(Icons.thumb_up_outlined),
-                 Text(video.likes),
+
                ],
              ),
            ),
@@ -36,7 +36,7 @@ class VideoInfo extends StatelessWidget {
               child: Column(
                 children: [
                   Icon(Icons.thumb_down_outlined),
-                  Text(video.dislikes),
+
                 ],
               ),
             ),
@@ -85,7 +85,7 @@ class VideoInfo extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 14.0),
                   ),
-                  Text("${video.subscriber} subscribers ",
+                  Text(video.subscriber,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 11.0,color: Colors.white60),),
 

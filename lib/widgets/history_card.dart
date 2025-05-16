@@ -20,7 +20,11 @@ class HistoryCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Image.network(video.thumbnailUrl),
+              child: Image.network(video.thumbnailUrl.toString(),
+                errorBuilder: ( context,error,stackTrace){
+                  return Image.network('https://wallpapercave.com/wp/wp5773223.jpg');
+                },
+              ),
             ),
             const SizedBox(height: 5,),
               Row(

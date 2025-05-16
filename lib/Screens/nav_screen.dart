@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled1/Screens/settings_screen.dart';
 import 'package:untitled1/Screens/subscriptionscreen.dart';
-
+import 'dart:developer'as logDev;
 import 'Shorts.dart';
 import 'addscreen.dart';
 import 'home_screen.dart';
@@ -14,6 +16,7 @@ class NavScreen extends StatefulWidget {
 }
 
 class _NavScreenState extends State<NavScreen> {
+
   int selectedIndex=0;
 
   final screens=[
@@ -27,7 +30,8 @@ class _NavScreenState extends State<NavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar:
+      BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 10.0,
